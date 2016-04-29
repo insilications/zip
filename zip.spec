@@ -4,7 +4,7 @@
 #
 Name     : zip
 Version  : 30
-Release  : 12
+Release  : 13
 URL      : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Source0  : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Summary  : No detailed summary available
