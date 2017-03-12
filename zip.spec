@@ -4,7 +4,7 @@
 #
 Name     : zip
 Version  : 30
-Release  : 14
+Release  : 15
 URL      : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Source0  : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ License  : BSD-3-Clause
 Requires: zip-bin
 BuildRequires : bzip2-dev
 Patch1: cflags.patch
+Patch2: format.patch
 
 %description
 Zip 3.0 is the first Zip update adding large file support.  For now Zip 2.3x
@@ -29,11 +30,15 @@ bin components for the zip package.
 %prep
 %setup -q -n zip30
 %patch1 -p1
+%patch2 -p1
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1489362852
 make V=1  %{?_smp_mflags} CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
 
 %install
+export SOURCE_DATE_EPOCH=1489362852
 rm -rf %{buildroot}
 %makeinstall -f unix/Makefile
 
