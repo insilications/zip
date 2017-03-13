@@ -4,7 +4,7 @@
 #
 Name     : zip
 Version  : 30
-Release  : 15
+Release  : 16
 URL      : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Source0  : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Summary  : No detailed summary available
@@ -34,11 +34,15 @@ bin components for the zip package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1489362852
+export SOURCE_DATE_EPOCH=1489363209
+export CFLAGS="$CFLAGS -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -fstack-protector-strong "
+export FFLAGS="$CFLAGS -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong "
 make V=1  %{?_smp_mflags} CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
 
 %install
-export SOURCE_DATE_EPOCH=1489362852
+export SOURCE_DATE_EPOCH=1489363209
 rm -rf %{buildroot}
 %makeinstall -f unix/Makefile
 
