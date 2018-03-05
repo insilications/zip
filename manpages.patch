@@ -1,0 +1,11 @@
+--- zip30/unix/Makefile~	2008-05-07 01:33:56.000000000 -0500
++++ zip30/unix/Makefile	2018-03-05 12:52:05.075978405 -0600
+@@ -41,7 +41,7 @@
+ prefix = /usr/local
+ BINDIR = $(prefix)/bin
+ MANEXT=1
+-MANDIR = $(prefix)/man/man$(MANEXT)
++MANDIR = $(prefix)/share/man/man$(MANEXT)
+ ZIPMANUAL = zip.txt
+ ZIPMANUALcloak = zipcloak.txt
+ ZIPMANUALnote = zipnote.txt
