@@ -4,16 +4,18 @@
 #
 Name     : zip
 Version  : 30
-Release  : 18
+Release  : 19
 URL      : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Source0  : http://downloads.sourceforge.net/infozip/zip30.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: zip-bin
+Requires: zip-doc
 BuildRequires : bzip2-dev
 Patch1: cflags.patch
 Patch2: format.patch
+Patch3: manpages.patch
 
 %description
 Zip 3.0 is the first Zip update adding large file support.  For now Zip 2.3x
@@ -27,31 +29,39 @@ Group: Binaries
 bin components for the zip package.
 
 
+%package doc
+Summary: doc components for the zip package.
+Group: Documentation
+
+%description doc
+doc components for the zip package.
+
+
 %prep
 %setup -q -n zip30
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1489363209
-export CFLAGS="$CFLAGS -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong "
-make V=1  %{?_smp_mflags} CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
+export SOURCE_DATE_EPOCH=1520276835
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+make  %{?_smp_mflags} CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
 
 %install
-export SOURCE_DATE_EPOCH=1489363209
+export SOURCE_DATE_EPOCH=1520276835
 rm -rf %{buildroot}
 %makeinstall -f unix/Makefile
 
 %files
 %defattr(-,root,root,-)
-/usr/man/man1/zip.1
-/usr/man/man1/zipcloak.1
-/usr/man/man1/zipnote.1
-/usr/man/man1/zipsplit.1
 
 %files bin
 %defattr(-,root,root,-)
@@ -59,3 +69,7 @@ rm -rf %{buildroot}
 /usr/bin/zipcloak
 /usr/bin/zipnote
 /usr/bin/zipsplit
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/man/man1/*
