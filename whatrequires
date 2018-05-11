@@ -1,0 +1,16 @@
+# This file contains recursive sources that require this package
+R
+apache-spark
+audit
+bazel
+comedilib
+flatpak
+gmime
+gpgme
+hamlib
+ltp
+notmuch
+openjdk
+openjdk9
+swig
+volume_key
