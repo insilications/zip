@@ -4,10 +4,10 @@
 #
 Name     : zip
 Version  : 3.0
-Release  : 22
+Release  : 23
 URL      : https://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip30.tar.gz
 Source0  : https://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip30.tar.gz
-Summary  : No detailed summary available
+Summary  : Compressor/archiver for creating and modifying zipfiles
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: zip-bin = %{version}-%{release}
@@ -19,14 +19,20 @@ Patch2: format.patch
 Patch3: manpages.patch
 
 %description
-Zip 3.0 is the first Zip update adding large file support.  For now Zip 2.3x
-remains available and supported, but users should switch to this new release.
+This Theos port supports all the unusual features of Theos filesystem.
+Under Theos filesystem files are typed. Types include :
+- stream
+- relative
+- keyed
+- indexed (ISAM)
+- program (86 real mode, 16 bits protected mode, 32 bits protected mode)
+- directory
+- library (contains files of any other types librry and directory excepted).
 
 %package bin
 Summary: bin components for the zip package.
 Group: Binaries
 Requires: zip-license = %{version}-%{release}
-Requires: zip-man = %{version}-%{release}
 
 %description bin
 bin components for the zip package.
@@ -59,7 +65,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545260381
+export SOURCE_DATE_EPOCH=1552835238
+export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -68,7 +75,7 @@ make  %{?_smp_mflags} CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile gene
 
 
 %install
-export SOURCE_DATE_EPOCH=1545260381
+export SOURCE_DATE_EPOCH=1552835238
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zip
 cp LICENSE %{buildroot}/usr/share/package-licenses/zip/LICENSE
