@@ -4,6 +4,5 @@ R
 bazel
 ltp
 openjdk
-openjdk10
 openjdk11
-openjdk9
+openjdk12
