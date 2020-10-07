@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : zip
 Version  : 3.0
-Release  : 27
+Release  : 28
 URL      : https://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip30.tar.gz
 Source0  : https://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip30.tar.gz
 Summary  : No detailed summary available
@@ -52,7 +52,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602079401
+export SOURCE_DATE_EPOCH=1602080158
 export GCC_IGNORE_WERROR=1
 ## altflags_pgo content
 ## pgo generate
@@ -94,7 +94,7 @@ export CXXFLAGS="${CXXFLAGS_GENERATE}"
 export FFLAGS="${FFLAGS_GENERATE}"
 export FCFLAGS="${FCFLAGS_GENERATE}"
 export LDFLAGS="${LDFLAGS_GENERATE}"
-make  %{?_smp_mflags}  CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
+make  %{?_smp_mflags}  CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc --always-make
 
 cp /usr/bin/x86_64-generic-linux-gcc .
 ./zip -9 test.zip x86_64-generic-linux-gcc
@@ -104,11 +104,11 @@ export CXXFLAGS="${CXXFLAGS_USE}"
 export FFLAGS="${FFLAGS_USE}"
 export FCFLAGS="${FCFLAGS_USE}"
 export LDFLAGS="${LDFLAGS_USE}"
-make  %{?_smp_mflags}  CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc
+make  %{?_smp_mflags}  CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc --always-make
 
 
 %install
-export SOURCE_DATE_EPOCH=1602079401
+export SOURCE_DATE_EPOCH=1602080158
 rm -rf %{buildroot}
 ## install_macro start
 %makeinstall -f unix/Makefile --always-make

@@ -1,1 +1,1 @@
-CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc 
+CFLAGS="$CFLAGS" BIND="gcc $LDFLAGS" -f unix/Makefile generic_gcc --always-make
