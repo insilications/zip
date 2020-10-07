@@ -1,0 +1,6 @@
+# rm *.o
+# rm zip
+# rm zipcloak
+# rm zipnote
+# rm zipsplit 
+echo test

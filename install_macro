@@ -1,1 +1,1 @@
-%makeinstall -f unix/Makefile
+%makeinstall -f unix/Makefile --always-make
