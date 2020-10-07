@@ -5,4 +5,5 @@ bazel
 ltp
 openjdk
 openjdk11
-openjdk12
+openjdk13
+rpm
